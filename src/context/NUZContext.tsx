@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import axios from 'axios'
 
 
-const backendUrl = "http://localhost:5000"
+const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL;
 
 type NUZContextType = {
   token: string;
