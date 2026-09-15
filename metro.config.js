@@ -1,9 +1,10 @@
 const { getDefaultConfig } = require("expo/metro-config");
-const { withNativeWind } = require('nativewind/metro');
- 
-const config = getDefaultConfig(__dirname)
+const { withNativeWind } = require("nativewind/metro");
 
-// Add WASM support for expo-sqlite
-config.resolver.assetExts.push('wasm');
+const config = getDefaultConfig(__dirname);
 
-module.exports = withNativeWind(config, { input: './global.css' })
+config.resolver.assetExts.push("wasm");
+
+module.exports = withNativeWind(config, {
+  input: "./global.css",
+});

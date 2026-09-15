@@ -1,12 +1,13 @@
 import NUZProvider from "@/context/NUZContext";
+import { NUZContext } from "@/context/NUZContext";
 import { Stack } from "expo-router";
 import { Image, View, Text } from "react-native";
 import Toast from 'react-native-toast-message'
 
 export default function RootLayout() {
   return (
-    <NUZProvider>
-     
+    
+     <NUZProvider >
       <Stack
         
         screenOptions={{
@@ -34,6 +35,7 @@ export default function RootLayout() {
         <Stack.Screen name="login" />
       </Stack>
      <Toast />
-    </NUZProvider>
+  </NUZProvider>
+    
   );
 }

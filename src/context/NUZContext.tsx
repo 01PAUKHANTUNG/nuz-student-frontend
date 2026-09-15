@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL;
 
+
 type NUZContextType = {
   token: string;
   setToken: React.Dispatch<React.SetStateAction<string>>;
