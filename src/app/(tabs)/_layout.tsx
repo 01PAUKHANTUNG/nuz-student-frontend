@@ -3,6 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import { useContext } from 'react';
 import Login from '../login';
+import Toast from 'react-native-toast-message';
 
 
 export default function _layout() {
@@ -10,6 +11,7 @@ export default function _layout() {
 
      
   return (
+    
     token === "" ? <Login /> : 
     <Tabs>
        
@@ -49,8 +51,9 @@ export default function _layout() {
             )
         }} 
         />
-
+     <Toast />
     </Tabs>
+    
     
   )
 }

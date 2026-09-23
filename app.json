@@ -1,55 +1,62 @@
 {
   "expo": {
-    "name": "nuz",
-    "slug": "nuz",
+    "name": "NUZ",
+    "slug": "nuz-student-app",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/images/icon.png",
-    "scheme": "nuz",
+    "icon": "./assets/images/logo.png",
+    "scheme": "National University Of Zoland",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/logo.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "foregroundImage": "./assets/images/logo.png",
+        "backgroundColor": "#E6F4FE"
       },
-      "predictiveBackGestureEnabled": false,
-      "package": "com.petertung.nuz"
+      "package": "com.petertung.nuzstudentapp"
     },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
+    "predictiveBackGestureEnabled": false,
+    "package": "com.petertung.nuz",
     "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#208AEF",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
-        }
-      ],
-      "expo-video",
-      "expo-sqlite",
-      "expo-image",
-      "expo-web-browser"
+      "expo-secure-store"
     ],
-    "experiments": {
-      "typedRoutes": true,
-      "reactCompiler": true
-    },
     "extra": {
-      "router": {},
       "eas": {
-        "projectId": "7e949643-4ec3-4252-9ecb-cbd7fbc6fd9b"
+        "projectId": "4ab34f44-3e3a-4e6e-880a-531e7a0c04ed"
       }
-    },
-    "owner": "petertung"
-  }
+    }
+  },
+  "web": {
+    "bundler": "metro",
+    "output": "static",
+    "favicon": "./assets/images/favicon.jpg"
+  },
+  "plugins": [
+    "expo-router",
+    [
+      "expo-splash-screen",
+      {
+        "backgroundColor": "#208AEF",
+        "image": "./assets/images/favicon.jpg",
+        "imageWidth": 76
+      }
+    ],
+    "expo-video",
+    "expo-sqlite",
+    "expo-image",
+    "expo-web-browser"
+  ],
+  "experiments": {
+    "typedRoutes": true,
+    "reactCompiler": true
+  },
+  "extra": {
+    "router": {},
+    "eas": {
+      "projectId": "7e949643-4ec3-4252-9ecb-cbd7fbc6fd9b"
+    }
+  },
+  "owner": "petertung"
 }

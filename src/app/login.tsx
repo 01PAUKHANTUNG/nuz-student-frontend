@@ -4,57 +4,73 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { NUZContext } from "@/context/NUZContext";
 import { globalStyles } from "@/styles/global";
-import Toast from "react-native-toast-message";
 //import { allUsers } from "@/assets/products";
+import * as SecureStore from "expo-secure-store";
+import axios from "axios";
+import Toast from "react-native-toast-message";
+
 
 export default function Login() {
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const {token, setToken, studentInfo, setStudentInfo, allStudent} = useContext(NUZContext);
+  const {token, setToken, studentInfo, setStudentInfo, allStudent, backendUrl} = useContext(NUZContext);
   const [loginStudent, setLoginStudent] = useState('');
 
  const filteringLoginStudent = allStudent.find((item) => item.studentID.trim() == studentId.trim() && item.password === password );
  
 
-  const handleLogin = () => {
+const login = async () => {
+
     if (!studentId || !password) {
-    
-    Toast.show({
-    type: "info",
-    text1: "Kisam lai",
-    text2: "Enter your infomation!"
-     });
+       Toast.show({
+        type: "error",
+        text1: "Student ID or password are required"
+      });
       return;
     }
-    
 
+  try {
+    const response = await axios.post(`${backendUrl}/api/student/login`,{studentId,password,});
 
-    if(filteringLoginStudent){
-  
-    if (studentId === filteringLoginStudent.studentID && 
-        password === filteringLoginStudent.password ) {
+     if(response.data.success){
+      console.log("login: " , response.data)
+         const token = response.data.token;
 
-       setToken("ProKTung")
-       
-       setStudentInfo({
-        studentID : studentId,
-        password : password
+       // Save token permanently on the device
+       await SecureStore.setItemAsync("nuz_token", token);
+
+      // Keep it in React state too
+       setToken(token);
+
+    setStudentInfo({
+       studentID : studentId,
+       password : password
+      })
+      
+     Toast.show({
+        type: "success",
+        text1: response.data.message
+      });
+   
+   router.replace('/(tabs)')
+
+    return true;
+     }else{
+       Toast.show({
+        type: "error",
+        text1 : response.data.message
        })
-      
-
-
-    Alert.alert("Success", "Login successful");
-    router.replace('/(tabs)')
-      
-    } else {
-      Alert.alert("Login Failed", "Invalid Student ID or Password");
-    }
+     }
+   
+  } catch (error) {
+    console.log("Login error:", error);
+    return false;
   }
-  };
-
+};
   
   return (
+    <>
     <KeyboardAvoidingView 
       behavior={Platform.OS === "android" ? "padding" : "height"}
     >
@@ -126,7 +142,8 @@ export default function Login() {
       {/* Login Button */}
       <TouchableOpacity
         style={styles.loginButton}
-      onPress={handleLogin}
+      //onPress={handleLogin}
+      onPress={login}
       >
         <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
@@ -134,6 +151,8 @@ export default function Login() {
     </View>
      </ScrollView>
     </KeyboardAvoidingView>
+    <Toast />
+    </>
   );
 }
 
@@ -213,4 +232,3 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 });
-

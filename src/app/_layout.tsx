@@ -14,7 +14,7 @@ export default function RootLayout() {
           headerTitle: () => (
             <View>
               <Image
-                source={require("../../assets/images/logo.jpg")}
+                source={require("../../assets/images/logo.png")}
                 style={{
                   width: 45,
                   height: 45,
