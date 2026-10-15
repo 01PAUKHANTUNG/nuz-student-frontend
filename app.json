@@ -3,10 +3,16 @@
     "name": "NUZ",
     "slug": "nuz-student-app",
     "version": "1.0.0",
-    "orientation": "default",
     "icon": "./assets/images/logo.png",
     "scheme": "National University Of Zoland",
     "userInterfaceStyle": "automatic",
+    "orientation": "portrait",
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "cover", 
+      "backgroundColor": "#C49D6A" 
+    },
+
     "ios": {
       "icon": "./assets/logo.png"
     },

@@ -8,17 +8,14 @@ import { globalStyles } from "@/styles/global";
 
 export default function Profile() {
   
- const {token, setToken, studentInfo} = useContext(NUZContext);
+ const {token, setToken, studentInfo, logout} = useContext(NUZContext);
  const studentClass = studentInfo?.studentID?.slice(2, 5) ?? "";
    
 const studentBatch = studentInfo?.studentID
     ? (Number(studentInfo.studentID.slice(0, 2)) - 24).toString()
     : "";
 
-  const handleLogout = () => {
-    setToken('');
-    router.replace('/login')
-  };
+  
 
   return (
     <ScrollView style={globalStyles.container}>
@@ -57,7 +54,7 @@ const studentBatch = studentInfo?.studentID
       {token !== '' ? (
         <TouchableOpacity
           style={[globalStyles.logoutButton]}
-          onPress={handleLogout}
+          onPress={logout}
    
         >
           <Ionicons name="log-out-outline" size={22} color="#fff" />

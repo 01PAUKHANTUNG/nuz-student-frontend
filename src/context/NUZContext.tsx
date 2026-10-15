@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
+import {router} from "expo-router";
 
 const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL;
 
@@ -56,6 +57,7 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       const savedToken = await SecureStore.getItemAsync("nuz_token");
       const savedStudent = await SecureStore.getItemAsync("nuz_student");
+      
 
       if (savedToken) {
         setToken(savedToken);
@@ -81,9 +83,7 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       await SecureStore.setItemAsync("nuz_token", newToken);
 
-      await SecureStore.setItemAsync(
-        "nuz_student",
-        JSON.stringify(student)
+      await SecureStore.setItemAsync("nuz_student",JSON.stringify(student)
       );
 
       setToken(newToken);
@@ -106,6 +106,9 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
         studentID: "",
         password: ""
       });
+
+       router.replace('/login')
+       
     } catch (error) {
       console.log("Logout error:", error);
     }
@@ -145,19 +148,30 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  useEffect(() => {
-    const initializeApp = async () => {
-      await restoreLogin();
+  // Send the token with every request whenever it changes
+useEffect(() => {
+  if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    // if your backend reads it as `token` header instead, use:
+    // axios.defaults.headers.common["token"] = token;
+  } else {
+    delete axios.defaults.headers.common["Authorization"];
+  }
+}, [token]);
 
-      // These require internet.
-      // If there is no internet, the saved login
-      // can still be used.
-      getStudentAccess();
-      getLessons();
-    };
+// Restore login once
+useEffect(() => {
+  restoreLogin();
+}, []);
 
-    initializeApp();
-  }, []);
+// Load data AFTER the token is available
+useEffect(() => {
+  if (!loading && token) {
+    getStudentAccess();
+    getLessons();
+  }
+}, [loading, token]);
+
 
   const value = {
     token,

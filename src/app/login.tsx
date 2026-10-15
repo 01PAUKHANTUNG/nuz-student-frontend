@@ -34,28 +34,29 @@ const login = async () => {
     const response = await axios.post(`${backendUrl}/api/student/login`,{studentId,password,});
 
      if(response.data.success){
-      console.log("login: " , response.data)
+      
          const token = response.data.token;
 
        // Save token permanently on the device
        await SecureStore.setItemAsync("nuz_token", token);
+       await SecureStore.setItemAsync("nuz_student", JSON.stringify({ studentID: studentId, password: password }));
+       
+      //Keep it in React state too
+      setToken(token);
 
-      // Keep it in React state too
-       setToken(token);
-
-    setStudentInfo({
-       studentID : studentId,
-       password : password
-      })
+      setStudentInfo({
+     studentID : studentId,
+      password : password
+     })
       
      Toast.show({
         type: "success",
         text1: response.data.message
       });
    
-   router.replace('/(tabs)')
+      router.replace('/(tabs)');
+      return true;
 
-    return true;
      }else{
        Toast.show({
         type: "error",

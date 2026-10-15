@@ -32,8 +32,6 @@ export async function downloadVideo(
       `${videoId}.mp4`
     );
 
-    console.log("Downloading:", video.videoUrl);
-    console.log("Saving to:", localFile.uri);
 
     // Download MP4 to Android/iOS app storage
     const downloadedFile = await File.downloadFileAsync(
@@ -43,11 +41,6 @@ export async function downloadVideo(
         idempotent: true,
         headers,
       }
-    );
-
-    console.log(
-      "Download complete:",
-      downloadedFile.uri
     );
 
     // Save information in SQLite

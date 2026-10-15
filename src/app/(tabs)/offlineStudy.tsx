@@ -23,8 +23,6 @@ export default function OfflineStudy() {
     try {
       const videos = await getDownloadedVideos();
 
-      console.log('Downloaded videos:', videos);
-
       setDownloadVideos(videos);
     } catch (error) {
       console.error('Failed to load downloaded videos:', error);
