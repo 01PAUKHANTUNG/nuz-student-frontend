@@ -1,12 +1,12 @@
 import { NUZContext } from "@/context/NUZContext";
 import { globalStyles } from "@/styles/global";
-import { Picker } from "@react-native-picker/picker";
 import { useContext, useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 //import { lessons } from "../../../assets/products";
-import VideoPlayers from "../../components/VidoePlayers";
-import "../../styles/global.css";
+import { router } from "expo-router";
+import SemesterCard from "../../components/cards/semesterCard";
 import Login from "../login";
+// import "../../styles/global.css";
 
 export default function Index() {
   const [semester, setSemester] = useState("");
@@ -114,23 +114,50 @@ export default function Index() {
 
   return (
     <ScrollView>
-      <Text style={globalStyles.title}>
-        Continous your study!
-      </Text>
 
-      <View style={{ marginTop: 5, marginBottom: 5 }}>
-        <Text style={globalStyles.paragrahp1}>
-          Class: {studentClass}
+      {/* Welcome text */}
+      {/* <Text style={globalStyles.homeTitle}>
+        Continues your study!
+      </Text> */}
+
+      {/* Title */}
+      <View style={globalStyles.homeClassInfoCon}>
+        <Text style={globalStyles.homeClassName}>
+          {/* Class : {studentClass} */}
+          Master of Public Affair
         </Text>
 
-        <Text style={globalStyles.paragrahp2}>
-          Batch: {studentBatch}
+        <Text style={globalStyles.homeCohort}>
+          {/* Batch : {studentBatch} */}
+          2026-2027 Cohort
         </Text>
       </View>
+      
+      {/* Semester Cards */}
+
+      {/* Sem-1 */}
+      <SemesterCard 
+        semesterImg={require('./../../../assets/mpa/semOne.jpg')}
+        semesterTitle="First Semester"
+        onPress={() => router.push('/screens/semOne/semOne')}
+      />
+
+      {/* Sem-2 */}
+      <SemesterCard 
+        semesterImg={require('./../../../assets/mpa/semTwo.jpg')}
+        semesterTitle="Second Semester"
+        onPress={() => router.push('/screens/semTwo/semTwo')}
+      />
+
+
 
       {/* =========================
           Semester
       ========================= */}
+
+      {/* <View>
+
+      </View>
 
       <View>
         <Text>Semester</Text>
@@ -159,13 +186,13 @@ export default function Index() {
             ))}
           </Picker>
         </View>
-      </View>
+      </View> */}
 
       {/* =========================
           Modules
       ========================= */}
 
-      <View>
+      {/* <View>
         <Text>Modules</Text>
 
         <View style={{ marginBottom: 5 }}>
@@ -191,13 +218,13 @@ export default function Index() {
             ))}
           </Picker>
         </View>
-      </View>
+      </View> */}
 
       {/* =========================
           Lessons
       ========================= */}
 
-      <View>
+      {/* <View>
         <Text>Lessons</Text>
 
         <View style={{ marginBottom: 5 }}>
@@ -220,12 +247,12 @@ export default function Index() {
             ))}
           </Picker>
         </View>
-      </View>
+      </View> */}
 
       {/* =========================
           Videos
       ========================= */}
-
+{/* 
       <View>
         {selectedVideos.length > 0 ? (
           selectedVideos.map((video) => (
@@ -239,7 +266,7 @@ export default function Index() {
             Please select Semester, Module and Lesson.
           </Text>
         )}
-      </View>
+      </View> */}
     </ScrollView>
   );
 }

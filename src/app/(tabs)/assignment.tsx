@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
-import {globalStyles} from "../../styles/global";
-import React from 'react'
+import { Text, View } from 'react-native'
+import { globalStyles } from "../../styles/global"
 
 export default function assignment() {
   return (

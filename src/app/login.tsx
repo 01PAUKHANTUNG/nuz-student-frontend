@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import {View,Text,TextInput,TouchableOpacity, StyleSheet, Alert, ToastAndroid, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { NUZContext } from "@/context/NUZContext";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { NUZContext } from "@/context/NUZContext";
-import { globalStyles } from "@/styles/global";
+import { useContext, useState } from "react";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 //import { allUsers } from "@/assets/products";
-import * as SecureStore from "expo-secure-store";
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
 import Toast from "react-native-toast-message";
 
 

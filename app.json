@@ -8,7 +8,7 @@
     "scheme": "National University Of Zoland",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/logo.png"
+      "icon": "./assets/images/logo.png"
     },
     "android": {
       "adaptiveIcon": {
@@ -17,10 +17,17 @@
       },
       "package": "com.petertung.nuzstudentapp"
     },
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#ffffff",
+      "hidden": false,
+      "translucent": false
+    },
     "predictiveBackGestureEnabled": false,
     "package": "com.petertung.nuz",
     "plugins": [
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-video"
     ],
     "extra": {
       "eas": {

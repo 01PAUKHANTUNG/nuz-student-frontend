@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 
-const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL;
+const backendUrl =process.env.EXPO_PUBLIC_BACKEND_URL;
 
 type StudentInfo = {
   name?: string;
