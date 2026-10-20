@@ -20,7 +20,7 @@ export default function Index() {
   // --------------------------------
 
  
-   const studentClass = studentInfo?.studentID?.slice(2, 6).includes("DSSS")? studentInfo?.studentID?.slice(2, 6) : studentInfo?.studentID?.slice(2, 5);
+  const studentClass = studentInfo?.studentID?.slice(2, 6).includes("DSSS")? studentInfo?.studentID?.slice(2, 6) : studentInfo?.studentID?.slice(2, 5);
 
   const studentBatch = studentInfo?.studentID
     ? (Number(studentInfo.studentID.slice(0, 2)) - 24).toString()
@@ -36,7 +36,7 @@ export default function Index() {
         item.course === studentClass &&
         item.batch === Number(studentBatch)
     );
-  }, [studentClass, studentBatch]);
+  }, [studentClass, studentBatch, lessons]);
 
   // --------------------------------
   // Different Semesters

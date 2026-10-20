@@ -58,7 +58,6 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
       const savedToken = await SecureStore.getItemAsync("nuz_token");
       const savedStudent = await SecureStore.getItemAsync("nuz_student");
       
-
       if (savedToken) {
         setToken(savedToken);
       }
@@ -66,6 +65,9 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
       if (savedStudent) {
         setStudentInfo(JSON.parse(savedStudent));
       }
+
+      router.replace("/(tabs)");
+
     } catch (error) {
       console.log("Restore login error:", error);
     } finally {
@@ -73,25 +75,6 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // ---------------------------------------
-  // Save login
-  // ---------------------------------------
-  const saveLogin = async (
-    newToken: string,
-    student: StudentInfo
-  ) => {
-    try {
-      await SecureStore.setItemAsync("nuz_token", newToken);
-
-      await SecureStore.setItemAsync("nuz_student",JSON.stringify(student)
-      );
-
-      setToken(newToken);
-      setStudentInfo(student);
-    } catch (error) {
-      console.log("Save login error:", error);
-    }
-  };
 
   // ---------------------------------------
   // Logout
@@ -148,7 +131,7 @@ const NUZProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Send the token with every request whenever it changes
+
 useEffect(() => {
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -159,10 +142,6 @@ useEffect(() => {
   }
 }, [token]);
 
-// Restore login once
-useEffect(() => {
-  restoreLogin();
-}, []);
 
 // Load data AFTER the token is available
 useEffect(() => {
@@ -183,7 +162,7 @@ useEffect(() => {
     getLessons,
     loading,
     logout,
-    saveLogin,
+    restoreLogin,
     backendUrl
   };
 

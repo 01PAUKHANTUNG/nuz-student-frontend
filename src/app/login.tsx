@@ -14,7 +14,7 @@ export default function Login() {
   const [studentId, setStudentId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const {token, setToken, studentInfo, setStudentInfo, allStudent, backendUrl} = useContext(NUZContext);
+  const {token, setToken, studentInfo, setStudentInfo, allStudent, backendUrl, restoreLogin } = useContext(NUZContext);
   const [loginStudent, setLoginStudent] = useState('');
 
  const filteringLoginStudent = allStudent.find((item) => item.studentID.trim() == studentId.trim() && item.password === password );
@@ -35,27 +35,17 @@ const login = async () => {
 
      if(response.data.success){
       
-         const token = response.data.token;
-
-       // Save token permanently on the device
-       await SecureStore.setItemAsync("nuz_token", token);
-       await SecureStore.setItemAsync("nuz_student", JSON.stringify({ studentID: studentId, password: password }));
-       
-      //Keep it in React state too
-      setToken(token);
-
-      setStudentInfo({
-     studentID : studentId,
-      password : password
-     })
-      
+      const token = response.data.token;
+      await SecureStore.setItemAsync("nuz_token", token);
+      await SecureStore.setItemAsync("nuz_student", JSON.stringify({ studentID: studentId, password: password }));
+     
      Toast.show({
         type: "success",
         text1: response.data.message
       });
    
-      router.replace('/(tabs)');
-      return true;
+      restoreLogin();
+      return  ;
 
      }else{
        Toast.show({

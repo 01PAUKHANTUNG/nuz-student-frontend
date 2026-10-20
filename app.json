@@ -3,66 +3,50 @@
     "name": "NUZ",
     "slug": "nuz-student-app",
     "version": "1.0.0",
-    "icon": "./assets/images/logo.png",
-    "scheme": "National University Of Zoland",
+    "icon": "./assets/images/icon.png",
+    "scheme": "nuz",
     "userInterfaceStyle": "automatic",
     "orientation": "portrait",
     "splash": {
       "image": "./assets/images/logo.png",
-      "resizeMode": "cover", 
-      "backgroundColor": "#C49D6A" 
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
     },
-
     "ios": {
-      "icon": "./assets/logo.png"
+      "icon": "./assets/images/icon.png",
+      "bundleIdentifier": "com.petertung.nuzstudentapp"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo.png",
-        "backgroundColor": "#E6F4FE"
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
       },
-      "package": "com.petertung.nuzstudentapp"
+      "package": "com.petertung.nuzstudentapp",
+      "predictiveBackGestureEnabled": false
     },
-    "predictiveBackGestureEnabled": false,
-    "package": "com.petertung.nuz",
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.jpg"
+    },
     "plugins": [
-      "expo-secure-store"
+      "expo-router",
+      "expo-secure-store",
+      "expo-video",
+      "expo-sqlite",
+      "expo-image",
+      "expo-web-browser"
     ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
     "extra": {
+      "router": {},
       "eas": {
         "projectId": "4ab34f44-3e3a-4e6e-880a-531e7a0c04ed"
       }
-    }
-  },
-  "web": {
-    "bundler": "metro",
-    "output": "static",
-    "favicon": "./assets/images/favicon.jpg"
-  },
-  "plugins": [
-    "expo-router",
-    [
-      "expo-splash-screen",
-      {
-        "backgroundColor": "#208AEF",
-        "image": "./assets/images/favicon.jpg",
-        "imageWidth": 76
-      }
-    ],
-    "expo-video",
-    "expo-sqlite",
-    "expo-image",
-    "expo-web-browser"
-  ],
-  "experiments": {
-    "typedRoutes": true,
-    "reactCompiler": true
-  },
-  "extra": {
-    "router": {},
-    "eas": {
-      "projectId": "7e949643-4ec3-4252-9ecb-cbd7fbc6fd9b"
-    }
-  },
-  "owner": "petertung"
+    },
+    "owner": "petertung"
+  }
 }
