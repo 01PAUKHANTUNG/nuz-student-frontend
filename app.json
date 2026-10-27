@@ -27,7 +27,14 @@
     "package": "com.petertung.nuz",
     "plugins": [
       "expo-secure-store",
-      "expo-video"
+      "expo-video",
+      "expo-font",
+      "expo-image",
+      "expo-router",
+      "expo-splash-screen",
+      "expo-sqlite",
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "extra": {
       "eas": {
